@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form{
+            display: flex;
+            margin-top: 20px;
+        }
+
+        label{
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius : 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li button{
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer; 
+            
+        }
+
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <!-- Form for adding tasks-->
+    <form action="/add_task" method="post">
+        <label for="task"> Task:</label>
+        <input type="text" id = "task" name="task" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- List of tasks -->
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task }}
+                <a href ="{{ url_for('delete_task', task_index=loop.index0) }}"> Delete</a>
+            
+              
+            </li>
+            {% endfor %}  
+        
+    </ul>
+</body>
+</html>
